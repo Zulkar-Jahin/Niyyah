@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const zikrList = [
@@ -10,18 +9,18 @@ const zikrList = [
   "La hawla wa la quwwata illa billah",
 ];
 
-function Home() {
-  const [selectedbtn, setSelectedbtn] = useState("");
+function Home({ selectedbtn, setSelectedbtn }) {
   const navigate = useNavigate();
 
   return (
-    <div className="p-6">
+    <div className="p-6 bg-gray-700 min-h-screen flex flex-col items-center justify-content gap-2">
       {zikrList.map((zikr) => (
         <button
+          key={zikr}
           onClick={() => setSelectedbtn(zikr)}
-          className={`w-[20%] mb-2 p-3 block border rounded-md px-4 py-2  ${
+          className={`w-[20%] mb-2 p-3 block border-black rounded-md px-4 py-2  ${
             zikr === selectedbtn ? "bg-green-700 text-white" : "bg-white"
-          } `}
+          }`}
         >
           {zikr}
         </button>
