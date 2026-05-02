@@ -4,21 +4,38 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Profile from "./pages/profile";
 import Counter from "./pages/Counter";
-import History from "./pages/History";  
-
+import History from "./pages/History";
+import Navbar from "./components/Navbar";
 
 function App() {
   const [selectedbtn, setSelectedbtn] = useState("");
+  const [isOpen, setIsOpen] = useState(true);
 
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home selectedbtn={selectedbtn} setSelectedbtn={setSelectedbtn} /> } />
-        <Route path="/counter" element={<Counter selectedbtn={selectedbtn} /> } />
-        <Route path="/history" element={<History /> } />
-        <Route path="/profile" element={<Profile /> } />
-        <Route />
-      </Routes>
+      <div className="flex">
+        <Navbar isOpen={isOpen} setIsOpen={setIsOpen} />
+        <div className= {`transition-all ease-in-out flex-1  `} >
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Home
+                  selectedbtn={selectedbtn}
+                  setSelectedbtn={setSelectedbtn}
+                />
+              }
+            />
+            <Route
+              path="/counter"
+              element={<Counter selectedbtn={selectedbtn} />}
+            />
+            <Route path="/history" element={<History />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route />
+          </Routes>
+        </div>
+      </div>
     </BrowserRouter>
   );
 }

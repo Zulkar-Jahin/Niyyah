@@ -13,7 +13,7 @@ function Home({ selectedbtn, setSelectedbtn }) {
   const navigate = useNavigate();
 
   return (
-    <div className="p-6 bg-gray-700 min-h-screen flex flex-col items-center justify-content gap-2">
+    <div className="p-6 bg-[#06110D] min-h-screen flex flex-col items-center justify-content gap-2">
       {zikrList.map((zikr) => (
         <button
           key={zikr}
