@@ -15,7 +15,7 @@ function App() {
     <BrowserRouter>
       <div className="flex">
         <Navbar isOpen={isOpen} setIsOpen={setIsOpen} />
-        <div className= {`transition-all ease-in-out flex-1  `} >
+        <div className= {`flex-1 transition-all duration-400 ease-in-out ${isOpen ? "ml-56":"ml-0"} `} >
           <Routes>
             <Route
               path="/"
