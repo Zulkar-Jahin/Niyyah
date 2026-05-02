@@ -2,44 +2,117 @@ import { useState } from "react";
 
 function Counter({ selectedbtn }) {
   const [count, setCount] = useState(0);
+
+  const target = 500;
+  const progress = Math.min((count / target) * 100, 100);
+  const circumference = 2 * Math.PI * 88;
+  const offset = circumference - (progress / 100) * circumference;
+
+
   return (
-    <div className="bg-[#06110D] min-h-screen flex flex-col items-center justify-center gap-4">
-      <h1 className="w-max p-3 rounded-md bg-[#10B981] text-white text-3xl border-2 border-black h-16 w-full font-bold justify-center flex items-center ">
-        {selectedbtn}
-      </h1>
-      <div className="h-40 w-[40%] rounded-xl bg-[#FACC15] font-extrabold  text-6xl text-black text-bold border-black flex justify-center items-center">
-        {count}
+    <div className="bg-[#06110D] min-h-screen text-white p-4 lg:p-6 flex flex-col lg:flex-row gap-6 items-center justify-center">
+      {/* Left - Stats */}
+      <div className="flex flex-col gap-4 w-full lg:w-1/5 order-last lg:order-none mx-2 lg:mx-0">
+        <div className="bg-[#0f2d1f] rounded-xl p-4">
+          <p className="text-xs text-gray-400 mb-2">Daily target</p>
+          <div className="flex justify-between text-sm text-gray-300 mb-2">
+            <span>
+              {count} / {target}
+            </span>
+            <span>{Math.round(progress)}%</span>
+          </div>
+          <div className="h-2 bg-gray-700 rounded-full">
+            <div
+              className="h-2 bg-green-500 rounded-full transition-all"
+              style={{ width: `${progress}%` }}
+            ></div>
+          </div>
+        </div>
+        <div className="bg-[#0f2d1f] rounded-xl p-4">
+          <p className="text-xs text-gray-400 mb-1">Today's total</p>
+          <p className="text-2xl font-medium">{count}</p>
+        </div>
+        <div className="bg-[#0f2d1f] rounded-xl p-4">
+          <p className="text-xs text-gray-400 mb-1">Best session</p>
+          <p className="text-2xl font-medium">500</p>
+        </div>
       </div>
-      <div className="flex gap-2">
+
+      {/* Center - Counter */}
+      <div className="flex flex-col items-center gap-6 flex-1 order-first lg:order-none  px-4 lg:px-0 px-6 lg:px-0">
+        <p className="text-2xl font-medium">{selectedbtn || "Select a zikr"}</p>
+
+        {/* Circular counter */}
+        <div className="relative w-52 h-52">
+          <svg
+            className="absolute top-0 left-0 -rotate-90"
+            width="208"
+            height="208"
+            viewBox="0 0 208 208"
+          >
+            <circle
+              cx="104"
+              cy="104"
+              r="88"
+              fill="none"
+              stroke="#1a3a2a"
+              strokeWidth="10"
+            />
+            <circle
+              cx="104"
+              cy="104"
+              r="88"
+              fill="none"
+              stroke="#1D9E75"
+              strokeWidth="10"
+              strokeDasharray={circumference}
+              strokeDashoffset={offset}
+              strokeLinecap="round"
+            />
+          </svg>
+          <div className="absolute inset-0 flex items-center justify-center text-6xl font-medium">
+            {count}
+          </div>
+        </div>
+
+        {/* Buttons */}
+        <div className="grid grid-cols-4 gap-3 w-full max-w-xs mx-auto">
+          {[1, 10, 50, 100].map((num) => (
+            <button
+              key={num}
+              onClick={() => setCount(count + num)}
+              className={`py-3 rounded-xl text-base font-medium border transition ${
+                num === 100
+                  ? "bg-[#0F6E56] text-[#E1F5EE] border-[#085041]"
+                  : "bg-[#0f2d1f] text-white border-gray-700 hover:bg-[#1a3a2a]"
+              }`}
+            >
+              +{num}
+            </button>
+          ))}
+        </div>
+
         <button
-          onClick={() => setCount(count + 1)}
-          className="bg-[#8B5CF6] text-white border border-black px-3 py-2 rounded"
+          onClick={() => setCount(0)}
+          className="w-full max-w-sm py-2 rounded-xl border border-gray-700 bg-[#0f2d1f] text-gray-400 hover:text-white transition text-sm"
         >
-          +1
-        </button>
-        <button
-          onClick={() => setCount(count + 10)}
-          className="bg-[#8B5CF6] text-white border border-black px-3 py-2 rounded"
-        >
-          +10
-        </button>
-        <button
-          onClick={() => setCount(count + 50)}
-          className="bg-[#8B5CF6] text-white border border-black px-3 py-2 rounded"
-        >
-          +50
-        </button>
-        <button
-          onClick={() => setCount(count + 100)}
-          className="bg-[#8B5CF6] text-white border border-black px-3 py-2 rounded"
-        >
-          +100
+          Reset count
         </button>
       </div>
 
-      <button onClick={() => setCount(0)} className="text-white px-8 py-4 rounded bg-[#c20300] border border-black">
-        Reset
-      </button>
+      {/* Right - Motivation */}
+      <div className="w-full lg:w-1/5 order-last lg:order-none ">
+        <div className="bg-[#0f2d1f] rounded-xl p-4">
+          <p className="text-xs text-gray-400 mb-3">Motivation</p>
+          <p className="text-sm text-gray-300 border-l-2 border-green-600 pl-3 leading-relaxed">
+            "Whoever says SubhanAllah 100 times, a thousand good deeds are
+            recorded."
+            <span className="block text-xs text-gray-500 mt-2">
+              — Sahih Muslim
+            </span>
+          </p>
+        </div>
+      </div>
     </div>
   );
 }

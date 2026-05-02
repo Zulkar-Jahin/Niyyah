@@ -7,7 +7,7 @@ function Navbar({isOpen, setIsOpen}) {
       {/* hamburger menu button   */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`bg-[rgb(0,64,96)] text-white font-semibold px-2 py-2 rounded border-2 border-black fixed top-3 left-44 z-10 ${isOpen ? "left-44" : "left-2"} `} 
+        className={`bg-[rgb(0,64,96)] text-white font-semibold px-2 py-2 rounded border-2 border-black fixed top-3 left-44 z-10 ${isOpen ? "left-44" : "left-4"} `} 
       >
         {isOpen ? <X size={20} /> : <Menu size={20} />}
       </button>
