@@ -59,12 +59,75 @@ function History() {
         ))}
       </div>
 
-      <div className="bg-[rgb(1,66,82)] w-[full] lg:w-[40%] rounded-xl p-4 m-4">
-        <p className="text-xs lg:text-3xl text-gray-400 mb-4">
-          Daily activity (last 7 days)
-        </p>
-        <div className="relative min-h-[40vh] w-[100%]">
-          <canvas ref={chartRef}></canvas>
+      <div className="flex flex-col lg:flex-row gap-4">
+        {/* CHART HERE  */}
+        <div className="bg-[rgb(1,66,82)] w-[full] lg:w-[50%] rounded-xl p-4 m-4">
+          <p className="text-xs lg:text-3xl text-gray-400 mb-4">
+            Daily activity (last 7 days)
+          </p>
+          <div className="relative min-h-[40vh] w-[100%]">
+            <canvas ref={chartRef}></canvas>
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-4 w-full lg:w-[50%]">
+          {/* Zikr breakdown */}
+          <div className="bg-[rgb(1,66,82)] w-full rounded-xl p-4 ">
+            <p className="text-xs lg:text-2xl text-gray-400 mb-4">
+              Zikr breakdown
+            </p>
+            {[
+              { name: "Subhanallah", count: 980, percent: 80 },
+              { name: "Alhamdulillah", count: 740, percent: 60 },
+              { name: "Allahu Akbar", count: 620, percent: 50 },
+              { name: "Astaghfirullah", count: 320, percent: 30 },
+              { name: "La ilaha illallah", count: 187, percent: 15 },
+              {
+                name: "La hawla wa la quwwata illa billah",
+                count: 120,
+                percent: 10,
+              },
+            ].map((zikr) => (
+              <div key={zikr.name} className="flex items-center gap-3 mb-3">
+                <span className="text-sm lg:text-xl w-36  text-white">
+                  {zikr.name}
+                </span>
+                <div className="flex-1 h-2 bg-gray-700 rounded-full">
+                  <div
+                    className="h-2 bg-green-500 rounded-full"
+                    style={{ width: `${zikr.percent}%` }}
+                  ></div>
+                </div>
+                <span className="text-sm text-gray-400">{zikr.count}</span>
+              </div>
+            ))}
+          </div>
+          {/* activity log  */}
+          <div className="bg-[rgb(1,66,82)] w-full rounded-xl p-4 ">
+            <p className="text-xs lg:text-2xl text-gray-400 mb-4">Recent activity log</p>
+            {[
+              { name: "Subhanallah", time: "Today 9:32am", count: "+100" },
+              { name: "Alhamdulillah", time: "Today 8:15am", count: "+50" },
+              { name: "Allahu Akbar", time: "Yesterday 9:00pm", count: "+33" },
+              {
+                name: "Astaghfirullah",
+                time: "Yesterday 7:45pm",
+                count: "+20",
+              },
+              { name: "Subhanallah", time: "2 days ago", count: "+100" },
+            ].map((log, index) => (
+              <div
+                key={index}
+                className="flex justify-between items-center py-2 border-b border-gray-700 last:border-none"
+              >
+                <span className="text-sm lg:text-xl text-white">{log.name}</span>
+                <span className="text-xs lg:text-xl text-gray-400">{log.time}</span>
+                <span className="text-xs lg:text-xl bg-[rgb(83,240,246)] text-[rgb(0,0,0)] px-2 py-1 rounded-md">
+                  {log.count}
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
