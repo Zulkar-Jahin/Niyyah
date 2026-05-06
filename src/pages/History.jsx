@@ -73,7 +73,7 @@ function History() {
         <div className="flex flex-col gap-4 w-full lg:w-[50%]">
           {/* Zikr breakdown */}
           <div className="bg-[rgb(1,66,82)] w-full rounded-xl p-4 ">
-            <p className="text-xs lg:text-2xl text-gray-400 mb-4">
+            <p className="text-xs lg:text-3xl text-gray-400 mb-4">
               Zikr breakdown
             </p>
             {[
@@ -104,7 +104,9 @@ function History() {
           </div>
           {/* activity log  */}
           <div className="bg-[rgb(1,66,82)] w-full rounded-xl p-4 ">
-            <p className="text-xs lg:text-2xl text-gray-400 mb-4">Recent activity log</p>
+            <p className="text-xs lg:text-3xl text-gray-400 mb-4">
+              Recent activity log
+            </p>
             {[
               { name: "Subhanallah", time: "Today 9:32am", count: "+100" },
               { name: "Alhamdulillah", time: "Today 8:15am", count: "+50" },
@@ -120,8 +122,12 @@ function History() {
                 key={index}
                 className="flex justify-between items-center py-2 border-b border-gray-700 last:border-none"
               >
-                <span className="text-sm lg:text-xl text-white">{log.name}</span>
-                <span className="text-xs lg:text-xl text-gray-400">{log.time}</span>
+                <span className="text-sm lg:text-xl text-white">
+                  {log.name}
+                </span>
+                <span className="text-xs lg:text-xl text-gray-400">
+                  {log.time}
+                </span>
                 <span className="text-xs lg:text-xl bg-[rgb(83,240,246)] text-[rgb(0,0,0)] px-2 py-1 rounded-md">
                   {log.count}
                 </span>
@@ -129,6 +135,31 @@ function History() {
             ))}
           </div>
         </div>
+      </div>
+
+      {/* milestone section here  */}
+      <div className="bg-[rgb(1,82,78)] rounded-xl p-4 m-4">
+        <p className="text-xs lg:text-3xl text-gray-400 mb-4">
+          Milestones & achievements
+        </p>
+        {[
+          { icon: "★", title: "First 1000 zikr", desc: "Reached on Day 4" },
+          { icon: "🔥", title: "7 day streak", desc: "Completed last week" },
+          { icon: "🏆", title: "500 in one session", desc: "Personal best" },
+        ].map((m) => (
+          <div
+            key={m.title}
+            className="flex items-center gap-4 py-3 border-b border-gray-700 last:border-none"
+          >
+            <div className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-lg">
+              {m.icon}
+            </div>
+            <div>
+              <p className="text-sm lg:text-xl text-white">{m.title}</p>
+              <p className="text-xs lg:text-xl text-gray-400">{m.desc}</p>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
