@@ -6,7 +6,7 @@ function Login() {
 
   return (
     <div className="min-h-screen bg-[#06110D] flex items-center justify-center px-4">
-      <div className="w-full max-w-md bg-[#0f2d1f] rounded-2xl p-8 flex flex-col gap-5">
+      <div className="w-full max-w-md lg:max-w-xl bg-[#0f2d1f] rounded-2xl p-8 lg:p-8 flex flex-col gap-5">
 
         <div className="text-center mb-2">
           <h1 className="text-3xl lg:text-5xl font-bold text-white mb-2">Welcome Back</h1>
@@ -18,8 +18,8 @@ function Login() {
           <label className="text-xs lg:text-2xl text-gray-400">Email</label>
           <input
             type="email"
-            placeholder="you@example.com"
-            className="bg-[#06110D] text-white lg:text-xl border border-gray-700 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-green-600"
+            placeholder="john@example.com"
+            className="bg-[#06110D] text-white border border-gray-700 rounded-xl px-8 py-3 lg:py-4 text-sm  lg:text-xl focus:outline-none focus:border-green-600"
           />
         </div>
 
@@ -30,7 +30,7 @@ function Login() {
             <input
               type={showPassword ? "text" : "password"}
               placeholder="••••••••"
-              className="w-full bg-[#06110D] text-white lg:text-xl border border-gray-700 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-green-600"
+              className="w-full bg-[#06110D] text-white lg:text-xl border border-gray-700 rounded-xl px-4 py-3 lg:py-4 text-sm focus:outline-none focus:border-green-600"
             />
             <button
               onClick={() => setShowPassword(!showPassword)}
@@ -56,7 +56,7 @@ function Login() {
         </button>
 
         {/* Divider */}
-        <div className="flex items-center gap-3 text-gray-600 text-xs lg:text-sm">
+        <div className="flex items-center gap-3 text-gray-600 text-xs lg:text-xl">
           <div className="flex-1 h-px bg-gray-700"></div>
           or
           <div className="flex-1 h-px bg-gray-700"></div>
