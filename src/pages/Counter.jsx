@@ -15,12 +15,14 @@ function Counter({ selectedbtn }) {
       {/* Left - Stats */}
       <div className="flex flex-col gap-4 w-full lg:w-1/5 order-last lg:order-none mx-2 lg:mx-0">
         <div className="bg-[#0f2d1f] rounded-xl p-4">
-          <p className="text-xs text-gray-400 mb-2">Daily target</p>
+          <p className="text-xs lg:text-2xl text-gray-400 mb-2">Daily target</p>
           <div className="flex justify-between text-sm text-gray-300 mb-2">
-            <span>
+            <span className="lg:text-2xl lg:font-bold font-medium
+            text-sm">
               {count} / {target}
             </span>
-            <span>{Math.round(progress)}%</span>
+            <span  className="lg:text-2xl lg:font-bold font-medium
+            text-sm">{Math.round(progress)}%</span>
           </div>
           <div className="h-2 bg-gray-700 rounded-full">
             <div
@@ -30,12 +32,12 @@ function Counter({ selectedbtn }) {
           </div>
         </div>
         <div className="bg-[#0f2d1f] rounded-xl p-4">
-          <p className="text-xs text-gray-400 mb-1">Today's total</p>
+          <p className="text-xs lg:text-2xl lg:font-bold text-gray-400 mb-1">Today's total</p>
           <p className="text-2xl font-medium">{count}</p>
         </div>
         <div className="bg-[#0f2d1f] rounded-xl p-4">
-          <p className="text-xs text-gray-400 mb-1">Best session</p>
-          <p className="text-2xl font-medium">500</p>
+          <p className="text-xs text-gray-400 mb-1 lg:text-2xl lg:font-bold">Best session</p>
+          <p className="text-xs font-medium lg:text-2xl lg:font-bold">500</p>
         </div>
       </div>
 

@@ -53,7 +53,7 @@ function History() {
           { label: "Active days", value: "24" },
         ].map((stat) => (
           <div key={stat.label} className="bg-[rgb(1,66,82)] rounded-xl p-4">
-            <p className="text-xs text-gray-400 mb-1">{stat.label}</p>
+            <p className="text-xs lg:text-xl lg:font-bold text-gray-400 mb-1">{stat.label}</p>
             <p className="text-2xl font-medium">{stat.value}</p>
           </div>
         ))}
@@ -131,10 +131,11 @@ function History() {
                 count: "+20",
               },
               { name: "Subhanallah", time: "2 days ago", count: "+100" },
+              { name: "La hawla wa la quwwata illa billah", time: "3 days ago", count: "+100" },
             ].map((log, index) => (
               <div
                 key={index}
-                className="flex justify-between items-center py-2 border-b border-gray-700 last:border-none"
+                className="flex justify-between items-center py-2 border-b border-sky-700 last:border-none"
               >
                 <span className="text-sm lg:text-xl text-white">
                   {log.name}
