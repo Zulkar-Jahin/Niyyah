@@ -62,9 +62,23 @@ function History() {
       <div className="flex flex-col lg:flex-row gap-4">
         {/* CHART HERE  */}
         <div className="bg-[rgb(1,66,82)] w-[full] lg:w-[50%] rounded-xl p-4 m-4">
-          <p className="text-xs lg:text-3xl text-gray-400 mb-4">
-            Daily activity (last 7 days)
-          </p>
+          <div className="flex justify-between items-center mb-4">
+            <p className="text-xs lg:text-3xl text-gray-400 mb-4">
+              Daily activity (last 7 days)
+            </p>
+            <button
+              onClick={() => {
+                const link = document.createElement("a");
+                link.download = "niyyah-last-7-days.png";
+                link.href = chartRef.current.toDataURL("image/png");
+                link.click();
+              }}
+              className="text-sm lg:text-xl bg-gray-800 text-gray-300 px-3 py-1 rounded-lg hover:bg-gray-700 transition"
+            >
+              Export PNG
+            </button>
+          </div>
+
           <div className="relative min-h-[40vh] w-[100%]">
             <canvas ref={chartRef}></canvas>
           </div>
