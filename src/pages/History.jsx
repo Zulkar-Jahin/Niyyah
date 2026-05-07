@@ -61,7 +61,7 @@ function History() {
 
       <div className="flex flex-col lg:flex-row gap-4">
         {/* CHART HERE  */}
-        <div className="bg-[rgb(1,66,82)] w-[full] lg:w-[50%] rounded-xl p-4 m-4">
+        <div className="bg-[rgb(1,66,82)] w-[full] lg:w-[50%] rounded-xl p-4 m-4 ">
           <div className="flex justify-between items-center mb-4">
             <p className="text-xs lg:text-3xl text-gray-400 mb-4">
               Daily activity (last 7 days)

@@ -49,7 +49,7 @@ function Register() {
 
         {/* Password */}
         <div className="flex flex-col gap-1">
-          <label className="text-xs lg:text-xl text-gray-400">Password</label>
+          <label className="text-xs lg:text-2xl text-gray-400">Password</label>
           <div className="relative">
             <input
               type={showPassword ? "text" : "password"}
