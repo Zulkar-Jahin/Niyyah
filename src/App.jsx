@@ -6,6 +6,8 @@ import Profile from "./pages/profile";
 import Counter from "./pages/Counter";
 import History from "./pages/History";
 import Navbar from "./components/Navbar";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 function App() {
   const [selectedbtn, setSelectedbtn] = useState("");
@@ -15,7 +17,7 @@ function App() {
     <BrowserRouter>
       <div className="flex">
         <Navbar isOpen={isOpen} setIsOpen={setIsOpen} />
-        <div className= {`flex-1 transition-all duration-400 ease-in-out ${isOpen ? "ml-56":"ml-0"} `} >
+        <div className= {`flex-1 transition-all duration-500 ease-in-out ${isOpen ? "ml-56":"ml-0"} `} >
           <Routes>
             <Route
               path="/"
@@ -32,6 +34,8 @@ function App() {
             />
             <Route path="/history" element={<History />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
             <Route />
           </Routes>
         </div>

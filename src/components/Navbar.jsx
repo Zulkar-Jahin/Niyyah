@@ -15,7 +15,7 @@ function Navbar({isOpen, setIsOpen}) {
       {/* sidebar  */}
       <nav
         className={`h-screen w-56 bg-[rgb(0,64,96)] flex flex-col gap-4 p-3 text-white font-semibold text-xl text-center boder-2 border-black transition-transform duration-450 ${
-          isOpen ? "translate-x" : "-translate-x-full"
+          isOpen ? "translate-x-0" : "-translate-x-full"
         } fixed ` }
       >
         <h1 className="text-[rgb(186, 112, 72)] text-3xl pb-6 border-b border-[rgb(186,112,72)]">

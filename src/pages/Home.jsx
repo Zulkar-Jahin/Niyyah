@@ -68,7 +68,7 @@ function Home({ selectedbtn, setSelectedbtn }) {
         <div className="flex flex-col gap-4 w-full text-xl">
           {/* daily target  */}
           <div className="flex bg-[rgb(3,52,75)] rounded-lg gap-4 p-4 text-red-500">
-            <p cclassName="flex-1 text-xl font-normal  mb-3 p-4 gap-4">
+            <p className="flex-1 text-xl font-normal  mb-3 p-4 gap-4">
               Daily Target
             </p>
             <div className="flex justify-between text-xl mb-1 gap-4">
