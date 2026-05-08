@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
-import protectedRoute from "../utils/protectedRoute";
+import ProtectedRoute from "./components/ProtectedRoute";
 import Home from "./pages/Home";
 import Profile from "./pages/profile";
 import Counter from "./pages/Counter";
@@ -34,42 +34,43 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Layout isOpen={isOpen} setIsOpen={setIsOpen} />
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <Home selectedbtn={selectedbtn} setSelectedbtn={setSelectedbtn} />
-          }
-        />
-        <Route
-          path="/counter"
-          element={
-            <protectedRoute>
-              <Counter selectedbtn={selectedbtn} />
-            </protectedRoute>
-          }
-        />
-        <Route
-          path="/history"
-          element={
-            <protectedRoute>
-              <History />
-            </protectedRoute>
-          }
-        />
-        <Route
-          path="/profile"
-          element={
-            <protectedRoute>
-              <Profile />
-            </protectedRoute>
-          }
-        />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route />
-      </Routes>
+      <Layout isOpen={isOpen} setIsOpen={setIsOpen}>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Home selectedbtn={selectedbtn} setSelectedbtn={setSelectedbtn} />
+            }
+          />
+          <Route
+            path="/counter"
+            element={
+              <ProtectedRoute>
+                <Counter selectedbtn={selectedbtn} />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/history"
+            element={
+              <ProtectedRoute>
+                <History />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route />
+        </Routes>
+      </Layout>
     </BrowserRouter>
   );
 }
