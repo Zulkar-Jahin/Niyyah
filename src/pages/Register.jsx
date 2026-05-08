@@ -1,15 +1,35 @@
+import { auth } from "../firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
 function Register() {
   const [showPassword, setShowPassword] = useState(false);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
+  const navigate = useNavigate();
+
+  const handleRegister = async () => {
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);
+      navigate("/");
+    } catch (error) {
+      setError("Registration failed. Try again.");
+    }
+  };
 
   return (
     <div className="min-h-screen bg-[#06110D] flex items-center justify-center px-4">
       <div className="w-full max-w-md lg:max-w-xl bg-[#0f2d1f] rounded-2xl p-8 lg:p-8 flex flex-col gap-5">
         <div className="text-center mb-2">
           <h1 className="text-3xl font-bold text-white mb-2">Create Account</h1>
-          <p className="text-gray-400 text-sm lg:text-xl">Start your zikr journey today</p>
+          <p className="text-gray-400 text-sm lg:text-xl">
+            Start your zikr journey today
+          </p>
         </div>
 
         {/* Name */}
@@ -17,6 +37,8 @@ function Register() {
           <label className="text-xs lg:text-2xl text-gray-400">Full Name</label>
           <input
             type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
             placeholder="John Doe"
             className="bg-[#06110D] text-white lg:text-xl border border-gray-700 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-green-600"
           />
@@ -27,6 +49,8 @@ function Register() {
           <label className="text-xs lg:text-2xl text-gray-400">Email</label>
           <input
             type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             placeholder="john@example.com"
             className="bg-[#06110D] text-white border border-gray-700 rounded-xl px-4 py-3 lg:py-4 text-sm lg:text-xl focus:outline-none focus:border-green-600"
           />
@@ -53,6 +77,8 @@ function Register() {
           <div className="relative">
             <input
               type={showPassword ? "text" : "password"}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               placeholder="••••••••"
               className="w-full bg-[#06110D] text-white border border-gray-700 rounded-xl px-4 py-3 lg:py-4 text-sm focus:outline-none focus:border-green-600"
             />
@@ -66,9 +92,18 @@ function Register() {
         </div>
 
         {/* Register Button */}
-        <button className="w-full bg-green-700 hover:bg-green-600 text-white lg:text-2xl py-3 rounded-xl font-medium transition">
+        <button
+          onClick={handleRegister}
+          className="w-full bg-green-700 hover:bg-green-600 text-white lg:text-2xl py-3 rounded-xl font-medium transition"
+        >
           Create Account
         </button>
+        {/* error message show section   */}
+        {error && (
+          <div className="text-red-500 text-sm lg:text-xl text-center">
+            {error}
+          </div>
+        )}
 
         {/* Divider */}
         <div className="flex items-center gap-3 text-gray-600 text-xs lg:text-xl">

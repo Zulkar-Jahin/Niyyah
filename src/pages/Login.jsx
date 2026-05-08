@@ -1,16 +1,35 @@
-import { useState } from "react"
-import { Link } from "react-router-dom"
+import { auth } from "../firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 function Login() {
-  const [showPassword, setShowPassword] = useState(false)
+  const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
+  const navigate = useNavigate();
+
+  const handleLogin = async () => {
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      navigate("/");
+    } catch (error) {
+      setError("Invalid email or password");
+    }
+  };
 
   return (
     <div className="min-h-screen bg-[#06110D] flex items-center justify-center px-4">
       <div className="w-full max-w-md lg:max-w-xl bg-[#0f2d1f] rounded-2xl p-8 lg:p-8 flex flex-col gap-5">
-
         <div className="text-center mb-2">
-          <h1 className="text-3xl lg:text-5xl font-bold text-white mb-2">Welcome Back</h1>
-          <p className="text-gray-400 text-sm lg:text-xl">Log in to continue your zikr journey</p>
+          <h1 className="text-3xl lg:text-5xl font-bold text-white mb-2">
+            Welcome Back
+          </h1>
+          <p className="text-gray-400 text-sm lg:text-xl">
+            Log in to continue your zikr journey
+          </p>
         </div>
 
         {/* Email */}
@@ -19,6 +38,8 @@ function Login() {
           <input
             type="email"
             placeholder="john@example.com"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             className="bg-[#06110D] text-white border border-gray-700 rounded-xl px-8 py-3 lg:py-4 text-sm  lg:text-xl focus:outline-none focus:border-green-600"
           />
         </div>
@@ -30,6 +51,8 @@ function Login() {
             <input
               type={showPassword ? "text" : "password"}
               placeholder="••••••••"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               className="w-full bg-[#06110D] text-white lg:text-xl border border-gray-700 rounded-xl px-4 py-3 lg:py-4 text-sm focus:outline-none focus:border-green-600"
             />
             <button
@@ -47,13 +70,21 @@ function Login() {
             <input type="checkbox" className="accent-green-600 " />
             Remember me
           </label>
-          <span className="cursor-pointer text-sm lg:text-xl hover:text-white transition">Forgot password?</span>
+          <span className="cursor-pointer text-sm lg:text-xl hover:text-white transition">
+            Forgot password?
+          </span>
         </div>
 
         {/* Login Button */}
-        <button className="w-full bg-green-700 hover:bg-green-600 text-white lg:text-2xl py-3 rounded-xl font-medium transition">
+        <button
+          onClick={handleLogin}
+          className="w-full bg-green-700 hover:bg-green-600 text-white lg:text-2xl py-3 rounded-xl font-medium transition"
+        >
           Log In
         </button>
+        
+        {/* error message show section */}
+        {error && <div className="text-red-500 text-sm lg:text-xl text-center">{error}</div>}
 
         {/* Divider */}
         <div className="flex items-center gap-3 text-gray-600 text-xs lg:text-xl">
@@ -70,12 +101,13 @@ function Login() {
         {/* Register link */}
         <p className="text-center text-xs lg:text-xl text-gray-400">
           Don't have an account?{" "}
-          <Link to="/register" className="text-green-400 hover:text-green-300">Register</Link>
+          <Link to="/register" className="text-green-400 hover:text-green-300">
+            Register
+          </Link>
         </p>
-
       </div>
     </div>
-  )
+  );
 }
 
 export default Login;
