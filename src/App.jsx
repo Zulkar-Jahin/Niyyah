@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import protectedRoute from "../utils/protectedRoute";
 import Home from "./pages/Home";
 import Profile from "./pages/profile";
 import Counter from "./pages/Counter";
@@ -43,10 +44,28 @@ function App() {
         />
         <Route
           path="/counter"
-          element={<Counter selectedbtn={selectedbtn} />}
+          element={
+            <protectedRoute>
+              <Counter selectedbtn={selectedbtn} />
+            </protectedRoute>
+          }
         />
-        <Route path="/history" element={<History />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route
+          path="/history"
+          element={
+            <protectedRoute>
+              <History />
+            </protectedRoute>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <protectedRoute>
+              <Profile />
+            </protectedRoute>
+          }
+        />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route />
